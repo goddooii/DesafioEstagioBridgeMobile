@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/black</color>
+    <color name="colorPrimaryDark">@color/black</color>
+    <color name="colorAccent">@color/blue_50</color>
+
+
+    <color name="black">#000000</color>
+    <color name="dark_grey">#0F0F0F</color>
+    <color name="black_80">#262626</color>
+    <color name="black_60">#555555</color>
+    <color name="light_grey">#909090</color>
+    <color name="off_white">#F5F5F5</color>
+    <color name="blue_40">#009CFF</color>
+    <color name="blue_50">#007AF0</color>
+    <color name="blue">#0A68DE</color>
+    <color name="blue_90">#1348BF</color>
+
+    <color name="track_item_artist">#FF7B7B7B</color>
+    <color name="track_item_disabled">#FF555555</color>
+    <color name="grey_7B">#7B7B7B</color>
+
+    <color name="transparent">#80000000</color>
+</resources>

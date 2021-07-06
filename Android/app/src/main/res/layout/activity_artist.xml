@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="onBackPressedListener"
+            type="com.bridge.audino.utils.listener.OnBackPressedListener" />
+
+        <variable
+            name="name"
+            type="String" />
+
+        <variable
+            name="tocarEnabled"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/artista_back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="16dp"
+            android:onClick="@{() ->  onBackPressedListener.onBackPressed()}"
+            android:translationZ="2dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_arrow_left" />
+
+        <ProgressBar
+            android:id="@+id/artista_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="50dp">
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/artist_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="artist_background,artist_gradient,artist_name,artist_followers,artist_track_list_label,artist_track_list,artist_album_list_label,artist_album_list,artist_play_button_layout"
+                    tools:visibility="visible" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/artist_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:translationZ="0dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:background="@color/off_white"
+                    tools:layout_height="417dp" />
+
+                <View
+                    android:id="@+id/artist_gradient"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:background="@drawable/gradient"
+                    android:translationZ="2dp"
+                    app:layout_constraintBottom_toBottomOf="@id/artist_background" />
+
+                <FrameLayout
+                    android:id="@+id/artist_play_button_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:translationZ="4dp"
+                    app:layout_constraintBottom_toBottomOf="@id/artist_name"
+                    app:layout_constraintRight_toRightOf="@id/artist_gradient"
+                    app:layout_constraintTop_toTopOf="@id/artist_name">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/artist_play_button"
+                        style="@style/Widget.MaterialComponents.Chip.Action"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/transparent"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="10dp"
+                        android:paddingRight="16dp"
+                        android:paddingBottom="10dp"
+                        android:text="@string/tocar_button"
+                        android:textColor="@{tocarEnabled ? @color/off_white : @color/track_item_disabled}"
+                        app:chipBackgroundColor="@{tocarEnabled ? @color/blue : @color/black_80}"
+                        tools:chipBackgroundColor="@color/blue" />
+
+                </FrameLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/artist_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="50dp"
+                    android:text="@{name}"
+                    android:textColor="@color/off_white"
+                    android:textSize="32sp"
+                    android:translationZ="4dp"
+                    app:fontFamily="@font/inter_bold"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintLeft_toLeftOf="@id/artist_gradient"
+                    app:layout_constraintRight_toLeftOf="@id/artist_play_button_layout"
+                    app:layout_constraintTop_toTopOf="@id/artist_gradient"
+                    app:layout_constraintWidth_default="wrap"
+                    tools:text="Halsey" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/artist_followers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="It's over 9 thousand"
+                    android:textColor="@color/grey_7B"
+                    android:textSize="14sp"
+                    android:translationZ="4dp"
+                    app:fontFamily="@font/inter_medium"
+                    app:layout_constraintLeft_toLeftOf="@id/artist_name"
+                    app:layout_constraintTop_toBottomOf="@id/artist_name"
+                    tools:text="52.876.865 ouvintes mensais" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/artist_track_list_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="35dp"
+                    android:text="@string/artist_list_label"
+                    android:textColor="@color/off_white"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/inter_bold"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/artist_followers" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/artist_track_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="24dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constrainedHeight="true"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/artist_track_list_label"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/track_item"
+                    tools:visibility="visible" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

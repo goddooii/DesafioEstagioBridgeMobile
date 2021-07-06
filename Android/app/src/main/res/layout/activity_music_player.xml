@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="favoriteListener"
+            type="com.bridge.audino.utils.listener.MusicPlayerFavoriteListener" />
+
+        <variable
+            name="onBackPressedListener"
+            type="com.bridge.audino.utils.listener.OnBackPressedListener" />
+
+        <variable
+            name="listenerPlayer"
+            type="com.bridge.audino.utils.listener.MusicPlayerListener" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/mediaplayer_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:translationZ="1dp"
+            android:visibility="visible" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mediaplayer_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            tools:context=".view.MusicPlayerActivity"
+            tools:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:onClick="@{() -> onBackPressedListener.onBackPressed()}"
+                android:translationZ="2dp"
+                app:layout_constraintLeft_toLeftOf="@id/song_image"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_arrow_left" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/song_image"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:translationZ="0dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:background="@color/blue_40"
+                tools:layout_height="417dp" />
+
+            <View
+                android:id="@+id/track_gradient"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/gradient"
+                android:translationZ="2dp"
+                app:layout_constraintBottom_toBottomOf="@id/song_image" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/song_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:textColor="@color/off_white"
+                android:textSize="24sp"
+                android:translationZ="4dp"
+                app:fontFamily="@font/inter_bold"
+                app:layout_constraintBottom_toTopOf="@+id/artist_name_tv"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:text="Focus" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/artist_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:textColor="@color/off_white"
+                android:textSize="16sp"
+                android:translationZ="4dp"
+                app:fontFamily="@font/inter_regular"
+                app:layout_constraintBottom_toBottomOf="@+id/track_gradient"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:text="H.E.R." />
+
+            <FrameLayout
+                android:id="@+id/favorite_buttons_fl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:translationZ="4dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/song_name_tv"
+                app:srcCompat="@drawable/ic_favorite_filled">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/track_favorite_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:onClick="@{() -> favoriteListener.onFavoriteClicked()}"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_favorite_outline"
+                    android:tint="@color/off_white" />
+
+                <ProgressBar
+                    android:id="@+id/track_favorite_button_progress_bar"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:visibility="invisible" />
+
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:id="@+id/music_progress_sb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginBottom="24dp"
+                app:layout_constraintBottom_toTopOf="@+id/player_options_ll"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/shuffle_ib"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:onClick="@{() -> listenerPlayer.onShuffleClicked()}"
+                android:padding="12dp"
+                android:src="@drawable/ic_shuffle"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@id/player_options_ll"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/player_options_ll"
+                app:layout_constraintTop_toTopOf="@+id/player_options_ll" />
+
+            <LinearLayout
+                android:id="@+id/player_options_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="104dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="@id/shuffle_ib"
+                app:layout_constraintRight_toRightOf="@id/repeat_ib">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/skip_previous_ib"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:background="@android:color/transparent"
+                    android:onClick="@{() -> listenerPlayer.onSkipPreviousClicked()}"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_skip_previous" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/play_pause_ib"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:background="@android:color/transparent"
+                    android:onClick="@{() -> listenerPlayer.onPlayOrPauseClicked()}"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_pause_circle" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/skip_next_ib"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:onClick="@{() -> listenerPlayer.onSkipNextClicked()}"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_skip_next" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/repeat_ib"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:padding="12dp"
+                android:src="@drawable/ic_repeat"
+                app:layout_constraintBottom_toBottomOf="@id/player_options_ll"
+                app:layout_constraintLeft_toRightOf="@id/player_options_ll"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/player_options_ll" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+</layout>

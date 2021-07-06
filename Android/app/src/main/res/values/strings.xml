@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Audino</string>
+    <string name="pesquisar_label">Pesquisar</string>
+    <string name="pesquisar_hint">Procure músicas, artistas, playlists…</string>
+    <string name="musicas_favoritas_label">Músicas favoritas</string>
+    <string name="ouvintes_mensais_label">%1s seguidores</string>
+    <string name="album_list_label">Discografia</string>
+    <string name="artist_list_label">Mais ouvidas</string>
+    <string name="album_number_tracks">%1d músicas</string>
+    <string name="tocar_button">Tocar</string>
+    <string name="top_tracks_label">Lançamentos</string>
+    <string name="label_empty_search">Pesquise músicas e artistas!\nBasta clicar no campo de busca.</string>
+    <string name="label_empty_favorite">Suas músicas favoritas estarão listadas aqui!\nAperte no coração para favoritar uma música.</string>
+</resources>
